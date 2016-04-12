@@ -61,6 +61,7 @@ initial_assets = 200
 assets = initial_assets
 sign_cost = 15
 days = 10
+glasses = 0 # I added this line to set glasses at 0 as an initiation
 for day in range(days):
 	if day > 0:
 		print('')
@@ -79,11 +80,11 @@ for day in range(days):
 		print('  There is ongoing street work, slightly reducing traffic.  But perhaps the work crew will get thirsty?')
 	print('')
 	original_assets = assets
-	glasses = get_glasses(day)
+	glasses = ((glasses + ((day - 1) % 4) ** 2) // 2) # I changed this line and made it equal to what the worksheet said
 	lemonade_cost = glasses * cost
 	assets -= lemonade_cost
-	price = get_price(day)
-	signs = get_signs(day, assets, sign_cost)
+	price = (4 + (0.3 * (day - 1))) + ((10 + (8.8 *((day - 1) % 4))) // 7) # Changed what price was equal to in this line
+	signs = ((day - 1) // 4) # Changed what signs was equal to for this line
 	advertising_cost = signs * sign_cost
 	assets -= advertising_cost
 	print('')
